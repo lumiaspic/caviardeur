@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>caviardeur — anonymisez un texte, en local</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>caviardeur</h1>
+      <p class="baseline">
+        Collez un texte, récupérez-en une version anonymisée.
+        <strong>Rien ne quitte votre navigateur.</strong>
+      </p>
+      <p id="network-status" class="network-status" aria-live="polite"></p>
+    </header>
+
+    <main>
+      <p class="honesty" role="note">
+        ⚠️ caviardeur vous <em>aide</em> à repérer des données sensibles, il ne
+        garantit pas une anonymisation parfaite. Il rate forcément des choses.
+        <strong>Relisez toujours</strong> le résultat avant de le partager.
+      </p>
+
+      <section>
+        <label for="input">Votre texte</label>
+        <textarea id="input" rows="10" placeholder="Collez ici le texte à anonymiser…"></textarea>
+        <button id="run" type="button">Caviarder</button>
+      </section>
+
+      <section id="result" hidden>
+        <label for="output">Texte caviardé</label>
+        <textarea id="output" rows="10" readonly></textarea>
+        <button id="copy" type="button">Copier</button>
+
+        <h2>Table de correspondance</h2>
+        <p class="note">
+          Conservez-la pour vous y retrouver. Elle reste sur votre machine.
+        </p>
+        <table id="table">
+          <thead>
+            <tr><th>Jeton</th><th>Catégorie</th><th>Valeur d'origine</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Commun numérique libre (<a href="LICENSE">GPLv3</a>) · 100 % local ·
+        sans build · sans IA d'apprentissage.
+      </p>
+    </footer>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>

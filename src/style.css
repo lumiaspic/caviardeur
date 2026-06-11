@@ -1,0 +1,82 @@
+/* Styles natifs, servis depuis le même origine. Aucune police ni ressource
+   externe (cohérence avec la promesse « zéro réseau »). */
+
+:root {
+  --fg: #1a1a1a;
+  --muted: #555;
+  --accent: #2a5d4e;
+  --warn-bg: #fff4e0;
+  --warn-border: #e0a030;
+  --border: #ccc;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: system-ui, sans-serif;
+  color: var(--fg);
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  line-height: 1.5;
+}
+
+h1 { color: var(--accent); margin-bottom: 0.25rem; }
+.baseline { margin-top: 0; color: var(--muted); }
+
+.network-status {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.honesty {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-radius: 0.4rem;
+  padding: 0.75rem 1rem;
+}
+
+section { margin: 1.5rem 0; }
+
+label { display: block; font-weight: 600; margin-bottom: 0.4rem; }
+
+textarea {
+  width: 100%;
+  font-family: ui-monospace, monospace;
+  font-size: 0.95rem;
+  padding: 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+}
+
+button {
+  margin-top: 0.6rem;
+  padding: 0.5rem 1.2rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+button:hover { filter: brightness(1.1); }
+
+table { border-collapse: collapse; width: 100%; margin-top: 0.5rem; }
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  font-family: ui-monospace, monospace;
+  font-size: 0.9rem;
+}
+th { background: #f3f3f3; }
+
+.note { color: var(--muted); font-size: 0.9rem; }
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.85rem;
+}

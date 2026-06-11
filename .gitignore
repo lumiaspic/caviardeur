@@ -1,0 +1,15 @@
+# Dépendances de dev (jamais livrées au navigateur)
+node_modules/
+
+# Sorties d'outillage
+*.tsbuildinfo
+
+# Environnements & éditeurs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Données brutes téléchargées avant transformation (les sorties préparées,
+# elles, sont versionnées dans data/). À affiner selon la pipeline de données.
+data/raw/

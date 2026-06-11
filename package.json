@@ -1,0 +1,16 @@
+{
+  "name": "caviardeur",
+  "version": "0.0.0",
+  "description": "Anonymise un texte collé, 100% local dans le navigateur, sans build ni ML.",
+  "type": "module",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "test": "node --test",
+    "typecheck": "tsc --noEmit -p jsconfig.json"
+  },
+  "comments": {
+    "no-runtime-deps": "Aucune dépendance runtime n'est autorisée. L'outillage de dev (test natif Node, typecheck) ne touche pas à l'artefact livré au navigateur.",
+    "typecheck": "Le script typecheck nécessite TypeScript installé localement (npx tsc). Optionnel : le typage se fait via JSDoc + // @ts-check, sans émission."
+  }
+}
