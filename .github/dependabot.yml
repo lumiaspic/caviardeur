@@ -1,0 +1,21 @@
+version: 2
+updates:
+  # Actions GitHub utilisées par la CI : on les garde à jour et épinglées.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: ci
+
+  # Dépendances de développement (typescript). Aucune dépendance runtime.
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: build
+    # Filet de sécurité : refuser toute dépendance de production introduite par
+    # erreur. Le projet n'en a aucune et ne doit jamais en avoir.
+    allow:
+      - dependency-type: development

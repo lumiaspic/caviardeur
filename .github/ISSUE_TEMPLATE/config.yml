@@ -1,0 +1,11 @@
+# Désactive les issues vierges : on guide vers le bon gabarit.
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Fuite de données / faille de confidentialité
+    url: https://github.com/lumiaspic/caviardeur/security/advisories/new
+    about: >-
+      Tout ce qui ferait sortir le texte de l'utilisateur du navigateur.
+      Signalez-le en privé via un security advisory, jamais en issue publique.
+  - name: 💬 Question ou discussion
+    url: https://github.com/lumiaspic/caviardeur/discussions
+    about: Pour les questions ouvertes et les échanges (pas un bug précis).
