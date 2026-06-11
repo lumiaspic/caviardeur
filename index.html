@@ -41,9 +41,25 @@
       </section>
 
       <section id="result" hidden>
+        <p id="bracket-warning" class="honesty" role="note" hidden>
+          ⚠️ Votre texte contient déjà des crochets « [ ] ». Les jetons insérés
+          (ex. <code>[EMAIL_1]</code>) pourraient s'y confondre : relisez avec
+          attention avant de partager.
+        </p>
+
         <label for="output">Texte caviardé</label>
         <textarea id="output" rows="10" readonly></textarea>
         <button id="copy" type="button">Copier</button>
+
+        <section id="suggestions-section" hidden>
+          <h2>Suggestions à valider</h2>
+          <p class="note">
+            Ces repères sont <strong>ambigus</strong> : caviardeur ne les
+            applique <em>pas</em> tout seul, pour éviter de masquer à tort. Cochez
+            ceux qui sont bien des données à anonymiser.
+          </p>
+          <ul id="suggestions" class="suggestions"></ul>
+        </section>
 
         <h2>Table de correspondance</h2>
         <p class="note">

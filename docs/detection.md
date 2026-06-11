@@ -26,9 +26,37 @@ est **appliquée d'office** ou **proposée en suggestion à valider**.
 | Code postal          | regex + liste                        | 🟡        | à faire   |
 | Adresse postale      | regex + mots-clés (rue, av., bd…)    | 🟡        | à faire   |
 | Date                 | regex                                | 🟡        | à faire   |
-| Prénom / Nom         | dictionnaire INSEE + désambiguïsation| 🟠        | à faire   |
+| Prénom / Nom         | dictionnaire INSEE + désambiguïsation| 🟠        | démo (civilité) |
 | Ville / lieu         | dictionnaire communes + contexte     | 🟠        | à faire   |
 | Société              | dictionnaire + heuristiques          | 🟠        | à faire   |
+
+## Modèle de fiabilité (implémentation)
+
+La fiabilité est **portée par le registre** des détecteurs, pas par chaque
+détecteur. Une entrée du registre est `{ detect, reliability }`
+(`src/detect/types.js`, `DetectorEntry`) ; `runDetectors` appose la `reliability`
+déclarée sur chaque `Match` qu'il produit. Un détecteur reste donc une fonction
+pure `(text) => Match[]` ignorante de sa propre fiabilité.
+
+En aval (`src/anonymize.js`) :
+
+- **Priorité aux chevauchements.** `resolveOverlaps` retient, à chevauchement, la
+  plus fiable (`reliable` > `noisy` > `ambiguous`) ; à fiabilité égale, la plus
+  longue, puis la plus précoce. Une occurrence ambiguë qui chevauche une
+  détection fiable est donc écartée, pas même proposée.
+- **Appliqué vs suggéré.** `anonymize` applique `reliable`/`noisy` (jetons +
+  table). Les `ambiguous` sont renvoyés dans `suggestions` et **laissés
+  intacts** dans le texte tant que l'utilisateur ne les a pas validés (3ᵉ
+  argument `accepted`, un `Set` de clés `matchKey`). L'UI les présente en cases à
+  cocher.
+- **Collision de délimiteurs.** Si le texte d'origine contient déjà des crochets
+  `[` `]`, `anonymize` lève `bracketCollision` et l'UI affiche un avertissement
+  (les jetons insérés pourraient s'y confondre).
+
+Le détecteur `PERSONNE` actuel (`src/detect/person.js`) est une **démonstration**
+de cette voie ambiguë : civilité (« M. », « Mme », « Dr »…) suivie d'un nom
+capitalisé. Conservateur par construction. Il sera remplacé/élargi en Phase 3
+(dictionnaires INSEE + désambiguïsation par contexte).
 
 ## Le défi central : la désambiguïsation
 
