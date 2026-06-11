@@ -1,5 +1,8 @@
 # caviardeur
 
+[![CI](https://github.com/lumiaspic/caviardeur/actions/workflows/ci.yml/badge.svg)](https://github.com/lumiaspic/caviardeur/actions/workflows/ci.yml)
+[![Licence: GPL v3](https://img.shields.io/badge/licence-GPLv3-blue.svg)](LICENSE)
+
 **Collez un texte, récupérez-en une version anonymisée — sans que rien ne quitte votre navigateur.**
 
 `caviardeur` est un outil qui détecte et remplace les informations identifiantes
@@ -37,6 +40,17 @@ confidentiel : le *contenu* d'un dossier reste sensible même sans le nom. Voir
 
 Projet naissant, en cours de construction. Voir les *issues* pour la feuille de
 route.
+
+## Contribuer
+
+Les contributions sont les bienvenues — surtout les **faux négatifs** (données
+ratées par l'outil), qui sont notre priorité. Avant de vous lancer :
+
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — mise en route, conventions de commits et
+  flux de travail.
+- [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) — règles de savoir-vivre.
+- [`SECURITY.md`](SECURITY.md) — signaler une fuite de données ou une faille.
+- [`CHANGELOG.md`](CHANGELOG.md) — historique des versions.
 
 ## Licence
 
