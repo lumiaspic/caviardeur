@@ -12,7 +12,7 @@ import { anonymize } from "./anonymize.js";
 function el(id) {
   const node = document.getElementById(id);
   if (!node) throw new Error(`Élément introuvable : #${id}`);
-  return /** @type {T} */ (node);
+  return /** @type {T} */ (/** @type {unknown} */ (node));
 }
 
 /** @type {HTMLTextAreaElement} */

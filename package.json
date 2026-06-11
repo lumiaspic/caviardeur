@@ -7,10 +7,17 @@
   "license": "GPL-3.0-or-later",
   "scripts": {
     "test": "node --test",
-    "typecheck": "tsc --noEmit -p jsconfig.json"
+    "typecheck": "tsc --noEmit -p jsconfig.json",
+    "check:network": "node scripts/check-no-network.mjs",
+    "prepare": "node scripts/setup-hooks.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "25.9.3",
+    "typescript": "5.7.3"
   },
   "comments": {
-    "no-runtime-deps": "Aucune dépendance runtime n'est autorisée. L'outillage de dev (test natif Node, typecheck) ne touche pas à l'artefact livré au navigateur.",
-    "typecheck": "Le script typecheck nécessite TypeScript installé localement (npx tsc). Optionnel : le typage se fait via JSDoc + // @ts-check, sans émission."
+    "no-runtime-deps": "Aucune dépendance runtime n'est autorisée. Seules des devDependencies épinglées (outillage de dev) sont permises : elles ne touchent jamais l'artefact livré au navigateur.",
+    "prepare": "Active les hooks git natifs (.githooks/) après npm install, sans husky.",
+    "check:network": "Garde-fou : échoue si un accès réseau est introduit dans le code servi (règle n°1)."
   }
 }
