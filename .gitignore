@@ -11,6 +11,10 @@ Thumbs.db
 .idea/
 .claude/
 
+# Outillage de test navigateur (Playwright) — sorties locales, jamais livrées
+.playwright/
+.playwright-cli/
+
 # Données brutes téléchargées avant transformation (les sorties préparées,
 # elles, sont versionnées dans data/). À affiner selon la pipeline de données.
 data/raw/
