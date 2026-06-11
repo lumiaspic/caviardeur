@@ -2,6 +2,17 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
+    <!--
+      Règle n°1 (zéro réseau) imposée par le navigateur, pas seulement promise.
+      connect-src 'none' bloque toute requête sortante (appels réseau, sockets,
+      balises de télémétrie) : le texte ne PEUT pas sortir. default-src 'none'
+      verrouille le reste ; seuls le JS et le CSS du même origine sont autorisés.
+      Aucune ressource distante, aucun script ni style inline.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; connect-src 'none'"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>caviardeur — anonymisez un texte, en local</title>
     <link rel="stylesheet" href="src/style.css" />
