@@ -1,0 +1,11 @@
+#!/bin/sh
+# pre-commit — fait respecter la règle n°1 « zéro réseau » avant chaque commit.
+# Lance le garde-fou statique sur le code source. Zéro dépendance (Node natif).
+
+set -e
+
+if command -v node >/dev/null 2>&1; then
+  node scripts/check-no-network.mjs
+else
+  echo "⚠ node introuvable : garde-fou anti-réseau ignoré (sera vérifié en CI)." >&2
+fi

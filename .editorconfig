@@ -1,0 +1,21 @@
+# Mise en forme cohérente entre éditeurs. Complète .gitattributes.
+# https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+[*.md]
+# Markdown : deux espaces en fin de ligne peuvent être signifiants.
+trim_trailing_whitespace = false
+
+[Makefile]
+indent_style = tab
+
+# Les hooks et scripts shell n'ont pas d'extension : tabulations interdites,
+# 2 espaces comme le reste du dépôt (déjà couvert par [*]).

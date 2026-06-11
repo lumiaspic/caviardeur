@@ -1,0 +1,47 @@
+#!/bin/sh
+# commit-msg — valide le format Conventional Commits, sans dépendance.
+# Source unique de vérité : réutilisé tel quel par la CI (.github/workflows/ci.yml).
+#
+# Format attendu :  type(scope optionnel)!: sujet
+# Exemples valides :  feat: ajoute le détecteur IBAN
+#                     fix(email): gère les sous-domaines
+#                     refactor!: renomme l'API des détecteurs
+
+set -e
+
+msg_file="$1"
+# Première ligne non vide et non commentée du message.
+subject="$(grep -v '^#' "$msg_file" | sed '/^[[:space:]]*$/d' | head -n 1)"
+
+# On ignore les commits techniques générés par git.
+case "$subject" in
+  "Merge "*|"Revert "*|"fixup! "*|"squash! "*|"amend! "*)
+    exit 0
+    ;;
+esac
+
+types='feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert'
+pattern="^(${types})(\([a-z0-9._-]+\))?!?: .+"
+
+if printf '%s' "$subject" | grep -Eq "$pattern"; then
+  exit 0
+fi
+
+cat >&2 <<EOF
+✖ Message de commit non conforme aux Conventional Commits.
+
+  Reçu :   $subject
+
+  Attendu : type(scope optionnel)!: sujet
+  Types  : feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
+  Le « ! » signale un changement cassant (breaking change).
+
+  Exemples :
+    feat: ajoute le détecteur IBAN
+    fix(email): gère les sous-domaines
+    docs: clarifie la promesse hors-ligne
+    refactor!: renomme l'API des détecteurs
+
+  Voir CONTRIBUTING.md › Convention de commits.
+EOF
+exit 1

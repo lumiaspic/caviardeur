@@ -9,6 +9,7 @@ node_modules/
 Thumbs.db
 .vscode/
 .idea/
+.claude/
 
 # Données brutes téléchargées avant transformation (les sorties préparées,
 # elles, sont versionnées dans data/). À affiner selon la pipeline de données.

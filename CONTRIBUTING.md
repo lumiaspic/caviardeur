@@ -21,14 +21,54 @@ Ouvrez une issue avec un **exemple anonymisé** (ne collez pas de vraies donnée
 personnelles dans l'issue !) montrant ce qui aurait dû être détecté. Chaque faux
 négatif confirmé devient un test de régression.
 
+## Mise en route
+
+```sh
+npm install   # installe l'outillage de dev ET active les hooks git du dépôt
+```
+
+Le dépôt n'a **aucune dépendance runtime** ; `npm install` ne récupère que de
+l'outillage de développement (TypeScript pour la vérification de types). Il active
+aussi automatiquement les hooks git (`.githooks/`) qui valident vos commits.
+
+Scripts disponibles :
+
+| Commande                | Rôle                                                       |
+| ----------------------- | ---------------------------------------------------------- |
+| `npm test`              | Tests (runner natif de Node, zéro dépendance).             |
+| `npm run typecheck`     | Vérification des types (JSDoc + `tsc --noEmit`).           |
+| `npm run check:network` | Garde-fou « zéro réseau » sur le code servi.               |
+
 ## Flux de contribution
 
-1. Une **branche par changement**, une **PR** par changement.
-2. Ajoutez/mettez à jour les **tests** : cas « doit détecter » et « ne doit pas
-   détecter ».
-3. `npm test` doit passer. Vérifiez les types : `npx tsc --noEmit` (si TypeScript
-   est installé localement).
-4. Commits petits et explicites.
+1. Une **branche par changement**, une **PR** par changement. Nommage :
+   `feat/…`, `fix/…`, `docs/…`, `refactor/…`, `chore/…`, `ci/…`.
+2. Ajoutez/mettez à jour les **tests** : cas « doit détecter » **et** « ne doit
+   pas détecter ».
+3. Tout doit passer en local : `npm test`, `npm run typecheck`,
+   `npm run check:network` (la CI les rejoue de toute façon).
+4. Mettez à jour [`CHANGELOG.md`](CHANGELOG.md) (section « Non publié ») si le
+   changement est visible pour l'utilisateur.
+5. Commits **petits, atomiques et conventionnels** (voir ci-dessous).
+
+## Convention de commits
+
+On suit les [Conventional Commits](https://www.conventionalcommits.org/fr/) :
+le format est `type(scope optionnel): sujet`. Le hook `commit-msg` le vérifie à
+chaque commit ; la CI le revérifie sur chaque commit de la PR.
+
+```
+feat: ajoute le détecteur IBAN
+fix(email): gère les sous-domaines
+docs: clarifie la promesse hors-ligne
+refactor!: renomme l'API des détecteurs   # le « ! » = changement cassant
+```
+
+Types : `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`,
+`ci`, `chore`, `revert`. Voir [`docs/releasing.md`](docs/releasing.md) pour le lien
+entre types de commits, versionnement et releases.
+
+Merci aussi de respecter notre [code de conduite](CODE_OF_CONDUCT.md).
 
 ## Note sur l'IA
 
