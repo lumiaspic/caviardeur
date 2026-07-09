@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@types/node": "25.9.3",
-    "typescript": "5.7.3"
+    "typescript": "7.0.2"
   },
   "comments": {
     "no-runtime-deps": "Aucune dépendance runtime n'est autorisée. Seules des devDependencies épinglées (outillage de dev) sont permises : elles ne touchent jamais l'artefact livré au navigateur.",
